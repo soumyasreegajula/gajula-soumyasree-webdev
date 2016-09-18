@@ -12,4 +12,4 @@ require ("./test/app.js")(app);
 
 var ipaddress = process.env.IP;
 var port      = process.env.PORT || 3000;
-app.listen(port, ipaddress);
+app.listen(port);
