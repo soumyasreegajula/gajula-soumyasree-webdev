@@ -1,0 +1,22 @@
+
+body{
+    padding-top: 65px
+}
+
+.navbar-default
+{
+    background-color: lightblue;
+}
+
+.navbar-default .navbar-brand {
+    color: white;
+}
+
+element.style {
+    margin-right: 15px;
+}
+
+.page-list_label_style {
+
+    color: dodgerblue;
+}
