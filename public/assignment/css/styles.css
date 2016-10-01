@@ -8,6 +8,18 @@ body{
     background-color: royalblue;
 }
 
+.navbar-pages{
+    background-color: gainsboro;
+}
+
+.glyphicon-pages-user{
+    color:royalblue !important;
+}
+
+.glyphicon-pages{
+    color:black !important;
+}
+
 .page-navbar-default{
     background-color:gainsboro;
 }
@@ -102,4 +114,12 @@ element.style {
 }
 .zero-right-padding {
     padding-right: 0px;
+}
+
+.hidden-phone {
+    display: block;
+}
+
+.glyphicon-play-widget{
+    color: dimgray;
 }
