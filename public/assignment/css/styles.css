@@ -78,3 +78,28 @@ element.style {
     text-decoration:none;
     text-underline-mode: false !important;
 }
+
+.v-divider{
+    margin-left:50px;
+    margin-right:50px;
+    width:1px;
+    height:100%;
+    border-left:1px solid gray;
+}
+
+
+.relative-position {
+    position: relative;
+}
+.absolute-position {
+    position: absolute;
+}
+.list-element-menu {
+    top: 0px;
+    right: 0px;
+    z-index: 10;
+    background-color: white;
+}
+.zero-right-padding {
+    padding-right: 0px;
+}
