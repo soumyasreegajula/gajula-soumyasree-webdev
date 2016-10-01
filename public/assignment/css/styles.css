@@ -5,11 +5,16 @@ body{
 
 .navbar-default
 {
-    background-color: lightblue;
+    background-color: royalblue;
+}
+
+.page-navbar-default{
+    background-color:gainsboro;
 }
 
 .navbar-default .navbar-brand {
     color: white;
+    float: left;
 }
 
 element.style {
@@ -19,4 +24,57 @@ element.style {
 .page-list_label_style {
 
     color: dodgerblue;
+}
+
+.left{
+    margin-left:10px;
+}
+
+.glyphicon-ok{
+
+    color:white;
+
+
+}
+
+.glyphicon-plus{
+    color:white;
+
+
+}
+
+.glyphicon-user{
+
+    color:white;
+
+}
+.glyphicon{
+    text-decoration: none;
+    text-underline: none;
+
+
+}
+
+.glyphicon-chevron-left{
+    color:white;
+
+}
+
+.align{
+    float:none;
+}
+
+.pull-left{
+    float:none;
+}
+
+
+.pull-right{
+    float:none;
+}
+
+.inherit {
+    color: white !important;
+    text-decoration:none;
+    text-underline-mode: false !important;
 }
