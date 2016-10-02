@@ -87,17 +87,21 @@ element.style {
 
 .inherit {
     color: white !important;
-    text-decoration:none;
+    text-decoration:none;!important;
     text-underline-mode: false !important;
 }
 
 .v-divider{
-    margin-left:50px;
-    margin-right:50px;
+
     width:1px;
-    height:100%;
-    border-left:1px solid gray;
+    background-color: black;
+    left: 33%;
+    position: absolute;
+    z-index: 5;
+    top:0;
+    bottom: 0;
 }
+
 
 
 .relative-position {
@@ -123,3 +127,8 @@ element.style {
 .glyphicon-play-widget{
     color: dimgray;
 }
+
+.a{
+    text-decoration: none;!important;
+}
+
