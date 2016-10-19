@@ -27,7 +27,7 @@
                     return user;
                 }
             }
-            return null;
+
         }
 
         function findUserByCredentials(username, password) {
@@ -38,7 +38,7 @@
                     return user;
                 }
             }
-            return null;
+
         }
 
         function createUser(username, password) {
@@ -62,7 +62,7 @@
                     return user;
                 }
             }
-            return null;
+
         }
 
         function updateUser(userId, user) {

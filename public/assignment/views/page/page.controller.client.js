@@ -55,9 +55,12 @@
 
     function EditPageController($routeParams, PageService,WebsiteService) {
         var vm = this;
+        vm.updatePage = updatePage;
+        vm.deletePage = deletePage;
 
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
+        vm.pageId=$routeParams['pid'];
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
 
@@ -70,7 +73,16 @@
 
         }
         init();
+
+        function updatePage(pageId, page) {
+            PageService.updatePage(vm.pageId, page);
+        }
+
+        function deletePage() {
+            PageService.deletePage(vm.pageId);
+        }
     }
+
 
 
 

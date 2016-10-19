@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left" style="margin-left: 0px">
-                <a href="#/profile">
+                <a href="#/user/{{model.userId}}">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -230,9 +230,31 @@
     </div>
     <div class="col-sm-8 pull-right" style="padding-left: 30px;padding-right: 0px;">
         <form>
-            {{model.widget}}
+            {{model.widgets}}
+            <div class="container-fluid">
+            <div ng-repeat="widget in model.widgets track by $index" class="list-group">
 
-            <div ng-include="'views/widget/widget-'+model.widget.widgetType.toLowerCase()+'.view.client.html'"></div>
+                <div ng-switch="widget.widgetType">
+                    <div ng-switch-when="HEADER">
+
+                        <div ng-include src="'views/widget/widget-heading.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="IMAGE">
+
+                        <div ng-include src="'views/widget/widget-image.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="YOUTUBE">
+
+                        <div ng-include src="'views/widget/widget-youtube.view.client.html'"></div>
+                    </div>
+                    <div ng-switch-when="HTML">
+
+                        <div ng-include src="'views/widget/widget-youtube.view.client.html'"></div>
+                    </div>
+                </div>
+            </div>
+                </div>
+
         </form>
     </div>
 
@@ -274,3 +296,6 @@
         </div>
     </div>
 </nav>
+
+
+

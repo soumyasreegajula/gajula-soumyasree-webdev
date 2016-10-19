@@ -4,7 +4,7 @@
     <div>
         <div class="navbar-header align">
             <p class="navbar-text pull-left" style="margin-left: 5px">
-                <a href="../views/page/page-list.view.client.html" class="glyphicon glyphicon-chevron-left  glyphicon-pages" style="text-decoration: none;"></a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-chevron-left  glyphicon-pages" style="text-decoration: none;"></a>
             </p>
             <a class="navbar-brand inherit" style="color: dimgray" style="text-decoration: none;">Widgets</a>
 
@@ -15,93 +15,46 @@
     </div>
 </nav>
 
-<div class="container-fluid">
-    <div class="list-group">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                WIDGETS
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html" style="text-decoration: none;"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 
 
 <div class="container-fluid">
-    <div class="list-group">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                WEB DEV
+
+
+        <div ng-repeat="widget in model.widgets track by $index" class="list-group">
+
+            <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADER">
+
+                <div ng-include src="'views/widget/widget-heading.view.client.html'"></div>
             </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html" style="text-decoration: none;"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
+            <div ng-switch-when="IMAGE">
+
+                <div ng-include src="'views/widget/widget-image.view.client.html'"></div>
             </div>
-        </div>
-    </div>
-</div>
+            <div ng-switch-when="YOUTUBE">
 
-
-
-
-<div class="container-fluid">
-    <div class="list-group">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <img class="img-responsive" src="https://static.pexels.com/photos/186077/pexels-photo-186077-large.jpeg" alt="Sample Image"/>
+                <div ng-include src="'views/widget/widget-youtube.view.client.html'"></div>
             </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-image.view.client.html" style="text-decoration: none;"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-    </div>
-</div>
+                <div ng-switch-when="HTML">
 
-
-<div class="container-fluid">
-    <div class="list-group">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <div class="embed-responsive embed-responsive-4by3">
-                    <iframe class="embed-responsive-item" src="//www.youtube.com/embed/ePbKGoIGAXY"></iframe>
+                    <div ng-include src="'views/widget/widget-youtube.view.client.html'"></div>
                 </div>
             </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-youtube.view.client.html" style="text-decoration: none;"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
         </div>
-    </div>
-</div>
 
 
-<div class="container-fluid">
-    {{model.user.websites}}
-    <div ng-repeat="widget in model.widgets" class="list-group">
-        <div class="relative-position">
-            <div class="container-fluid zero-right-padding">
-                <p>The average user visits more than 100 websites on their mobile device every month,and expectations for speed and quality higher than ever.These resources can help you supercharge your new or existing project with the next generation of web technologies in order to deliver fast, secure, and performant content to any screen. </p>
-            </div>
-            <div class="absolute-position list-element-menu zero-right-padding">
-                <a href="widget-heading.view.client.html" style="text-decoration: none;"><span class="glyphicon glyphicon-cog"></span></a>
-                <a href="#" style="text-decoration: none;"><span class="glyphicon glyphicon-menu-hamburger"></span></a>
-            </div>
-        </div>
-    </div>
 </div>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom navbar-pages">
     <p class="navbar-text pull-right" style="margin-right: 15px">
-        <a href="../views/user/profile.view.client.html" class="glyphicon glyphicon-user page-list_label_style   glyphicon-pages-user" style="text-decoration: none;"></a>
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user page-list_label_style   glyphicon-pages-user" style="text-decoration: none;"></a>
     </p>
     <p class="navbar-text pull-left" style="margin-left: 5px">
-        <a href="widget-list.view.client.html" class="glyphicon glyphicon-play page-list_label_style glyphicon-pages" style="text-decoration: none;"></a>
+        <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page}}/widget" class="glyphicon glyphicon-play page-list_label_style glyphicon-pages" style="text-decoration: none;"></a>
     </p>
 </nav>
+
+
+

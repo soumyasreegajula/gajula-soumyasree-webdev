@@ -62,7 +62,7 @@
                     return pages[p];
                 }
             }
-            return null;
+
         }
 
         function deletePage(pageId)   {

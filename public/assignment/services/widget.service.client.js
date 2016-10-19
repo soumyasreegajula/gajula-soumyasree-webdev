@@ -52,24 +52,28 @@
 
 
         function findWidgetsByPageId(pageId)   {
+            var result=[];
             for (var w in widgets) {
                 if (widgets[w].pageId === pageId) {
-                    return widgets[w];
+                    result.push(widgets[w]);
                 }
             }
-            return null;
+            return result;
+
 
         }
 
 
 
         function findWidgetById(widgetId) {
+            var result=[];
             for(var w in widgets) {
                 if(widgets[w]._id == widgetId) {
-                    return widgets[w];
+                    result.push(widgets[w]);
                 }
             }
-            return null;
+            return result;
+
         }
 
 

@@ -33,7 +33,7 @@
 
         vm.register = register;
 
-        function init (username, password, password2) {
+        function register (username, password, password2) {
             if (password===password2) {
                 UserService
                     .createUser(username, password);
@@ -42,7 +42,7 @@
                 $location.url("/user/" + user._id);
             }
         }
-        init();
+
     }
 
 

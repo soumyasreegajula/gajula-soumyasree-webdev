@@ -41,6 +41,10 @@
 
     function EditWebsiteController($routeParams, WebsiteService) {
         var vm = this;
+        vm.updateWebsite = updateWebsite;
+        vm.deleteWebsite = deleteWebsite;
+        vm.websiteId = $routeParams['wid'];
+
 
         vm.userId = $routeParams['uid'];
 
@@ -51,6 +55,15 @@
 
         }
         init();
+
+        function updateWebsite(website) {
+            WebsiteService.updateWebsite(vm.websiteId, website);
+        }
+
+        function deleteWebsite() {
+            WebsiteService.deleteWebsite(vm.websiteId);
+        }
+
     }
 })();
 

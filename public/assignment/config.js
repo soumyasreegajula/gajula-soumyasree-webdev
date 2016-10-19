@@ -18,7 +18,9 @@
                 controllerAs: "model"
             })
             .when("/register", {
-                templateUrl: "views/user/register.view.client.html"
+                templateUrl: "views/user/register.view.client.html",
+                controller: "RegisterController",
+                controllerAs: "model"
             })
             .when("/user/:uid", {
                 templateUrl: "views/user/profile.view.client.html",
@@ -70,7 +72,7 @@
 
             .when("/user/:uid/website/:wid/page/:pid/widget/:wgid", {
                 templateUrl: "views/widget/widget-edit.view.client.html",
-                controller: "WidgetEditController",
+                controller: "EditWidgetController",
                 controllerAs: "model"
             })
 

@@ -9,6 +9,12 @@
         .controller("EditWidgetController", EditWidgetController);
 
 
+
+
+
+
+
+
         function WidgetListController($routeParams,
                                       WidgetService, $sce) {
             var vm  = this;
@@ -57,7 +63,7 @@
             vm.wgid = $routeParams.wgid;
 
             function init() {
-                vm.widget = WidgetService.findWidgetById(vm.wgid);
+                vm.widgets = WidgetService.findWidgetById(vm.wgid);
             }
             init();
 

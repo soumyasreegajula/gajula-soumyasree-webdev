@@ -26,7 +26,7 @@
                 <input ng-model="model.user.title" type="text" class="form-control" id="title" placeholder="Page Title">
             </div>
 
-            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="btn btn-danger btn-block">Cancel</a>
+            <a ng-click="model.deletePage()" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="btn btn-danger btn-block">Cancel</a>
         </form>
     </div>
 
