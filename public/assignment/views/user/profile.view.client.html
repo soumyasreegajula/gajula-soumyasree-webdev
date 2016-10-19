@@ -1,0 +1,56 @@
+
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header align">
+                    <a class="navbar-brand inherit">Profile</a>
+                    <p class="navbar-text pull-right" style="margin-right: 10px">
+                        <a href="#/user/{{model.user._id}}" class="glyphicon glyphicon-ok tick inherit" style="text-decoration: none;"></a>
+                    </p>
+
+                </div>
+            </div>
+
+
+        </nav>
+        <div class="container">
+
+
+            <form>
+                <div class="form-group">
+                    <label for="Username">Username</label>
+                    <input ng-model="model.user.username" class="form-control" type="text"  id="username" placeholder="Soumya Sree">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Email</label>
+
+                    <input ng-model="model.user.exampleInputEmail1" type="email" class="form-control" id="exampleInputEmail1" placeholder="Soumya@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label for="firstname">FirstName</label>
+                    <input ng-model="model.user.firstname" type="text" class="form-control" id="firstname" placeholder="Soumya Sree">
+                </div>
+
+                <div class="form-group">
+
+                    <label for="lastname">LastName</label>
+                    <input ng-model="model.user.lastname" type="text" class="form-control" id="lastname" placeholder="Gajula">
+                </div>
+
+                <a href="#/user/{{model.user._id}}/website" class="btn btn-primary btn-block">Websites</a>
+                <a href="#/login" class="btn btn-danger btn-block">Logout</a>
+
+            </form>
+        </div>
+
+
+        <nav class="navbar navbar-default navbar-fixed-bottom">
+            <p class="navbar-text pull-right" style="margin-right: 10px">
+                <a href="#/user/{{model.user._id}}" class="glyphicon glyphicon-user inherit" style="text-decoration: none;"></a>
+            </p>
+        </nav>
+
+
+
+
+
