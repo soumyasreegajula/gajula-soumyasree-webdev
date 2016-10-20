@@ -9,7 +9,7 @@
                 <a class="navbar-brand " style="color: dimgray" style="text-decoration: none;">New Page</a>
 
                 <p class="navbar-text pull-right" style="margin-right: 15px">
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-ok  glyphicon-pages" style="text-decoration: none;"></a>
+                    <a ng-click="model.createPage(model.page)"  class="glyphicon glyphicon-ok  glyphicon-pages" style="text-decoration: none;"></a>
                 </p>
             </div>
         </div>
@@ -20,11 +20,11 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input ng-model="model.user.name" type="text" class="form-control" id="name" placeholder="Page Name">
+                <input ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Page Name">
             </div>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input ng-model="model.user.title" type="title" class="form-control" id="title" placeholder="Page Title">
+                <input ng-model="model.page.title" type="title" class="form-control" id="title" placeholder="Page Title">
             </div>
 
 

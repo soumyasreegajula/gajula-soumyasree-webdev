@@ -35,19 +35,11 @@
         function createWidget(pageId, widget)  {
             for(var w in widgets) {
                 if(widgets[w].pageId === pageId) {
-                    var newWidget = {
-                        _id: new Date().getTime(),
-                        widgetType: widget.WidgetType,
-                        pageId: pageId,
-                        size:widget.size,
-                        text:widet.text
 
-                    };
-
-                    widgets.push(newWidget);
+                    widgets.push(widget);
                 }
             }
-            return null;
+
         }
 
 
@@ -82,10 +74,10 @@
             for(var u in widgets) {
                 var widget = widgets[u];
                 if(widget._id === widgetId) {
-                    widgets.remove(widgetId);
+                    delete widgets[u];
                 }
             }
-            return null;
+
         }
 
 
@@ -96,7 +88,7 @@
                     us = widget;
                 }
             }
-            return null;
+
         }
 
 

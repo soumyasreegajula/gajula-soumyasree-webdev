@@ -1,15 +1,19 @@
 
 
-<nav class="navbar navbar-default navbar-fixed-top navbar-pages">
-    <div>
+
+
+
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div >
         <div class="navbar-header align">
             <p class="navbar-text pull-left" style="margin-left: 5px">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-chevron-left  glyphicon-pages" style="text-decoration: none;"></a>
+                <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-chevron-left inherit" style="text-decoration: none;"></a>
             </p>
-            <a class="navbar-brand inherit" style="color: dimgray" style="text-decoration: none;">Widgets</a>
+            <a class="navbar-brand inherit">Widgets</a>
 
-            <p class="navbar-text pull-right" style="margin-right: 15px">
-                <a href="widget-chooser.view.client.html" class="glyphicon glyphicon-plus  glyphicon-pages " style="text-decoration: none;"></a>
+            <p class="navbar-text pull-right" style="margin-right: 10px">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new" class="glyphicon glyphicon-plus inherit" style="text-decoration: none;"></a>
             </p>
         </div>
     </div>
@@ -17,34 +21,73 @@
 
 
 
+<div class="container">
 
-<div class="container-fluid">
-
-
-        <div ng-repeat="widget in model.widgets track by $index" class="list-group">
-
-            <div ng-switch="widget.widgetType">
-            <div ng-switch-when="HEADER">
-
-                <div ng-include src="'views/widget/widget-heading.view.client.html'"></div>
-            </div>
-            <div ng-switch-when="IMAGE">
-
-                <div ng-include src="'views/widget/widget-image.view.client.html'"></div>
+        <div ng-model="model.widget.widgetType" ng-switch="widget.widgetType"
+             ng-repeat="widget in model.widgets">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="pull-right">
+                <span class="glyphicon glyphicon-cog"></span>
+            </a>
+            <div ng-switch="widget.size" ng-switch-when="HEADER">
+                <h1 ng-switch-when="1">{{widget.text}}</h1>
+                <h2 ng-switch-when="2">{{widget.text}}</h2>
+                <h3 ng-switch-when="3">{{widget.text}}</h3>
+                <h4 ng-switch-when="4">{{widget.text}}</h4>
+                <h5 ng-switch-when="5">{{widget.text}}</h5>
+                <h6 ng-switch-when="6">{{widget.text}}</h6>
             </div>
             <div ng-switch-when="YOUTUBE">
+                <iframe width="560" height="315"
+                        ng-src="{{model.checkSafeYouTubeUrl(widget.url)}}"
+                        frameborder="0" allowfullscreen></iframe>
 
-                <div ng-include src="'views/widget/widget-youtube.view.client.html'"></div>
             </div>
-                <div ng-switch-when="HTML">
-
-                    <div ng-include src="'views/widget/widget-youtube.view.client.html'"></div>
-                </div>
+            <div ng-switch-when="IMAGE">
+                image
+            </div>
+            <div ng-switch-when="HTML" ng-bind-html="model.checkSafeHtml(widget.text)">
             </div>
         </div>
 
+    </div>
 
-</div>
+
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="row navbar-text" style="width: 100%; text-align: center;">
+            <div class="col-xs-2">
+                <a href="#">
+                    <span class="glyphicon glyphicon-heart"></span>
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#">
+                    <span class="glyphicon glyphicon-star"></span>
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#">
+                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#">
+                    <span class="glyphicon glyphicon-share-alt"></span>
+                </a>
+            </div>
+            <div class="col-xs-2">
+                <a href="#" class="pull-right">
+                    <span class="glyphicon glyphicon-user"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
 
 
 <nav class="navbar navbar-default navbar-fixed-bottom navbar-pages">

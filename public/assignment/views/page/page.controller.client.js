@@ -33,8 +33,9 @@
 
 
 
-    function NewPageController($routeParams, PageService,WebsiteService) {
+    function NewPageController($routeParams, PageService,WebsiteService,$location) {
         var vm = this;
+        vm.createPage=createPage;
 
         vm.userId = $routeParams['uid'];
         vm.websiteId = $routeParams['wid'];
@@ -51,9 +52,21 @@
         }
         init();
 
+        function createPage(page){
+            page._id=(new Date()).getTime();
+            page.websiteId=vm.websiteId;
+
+            console.log(page);
+            PageService.createPage(page.websiteId,page);
+            vm.pages = PageService.findPageByWebsiteId(page.websiteId);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+
+        }
+
+
     }
 
-    function EditPageController($routeParams, PageService,WebsiteService) {
+    function EditPageController($routeParams, PageService,WebsiteService,$location) {
         var vm = this;
         vm.updatePage = updatePage;
         vm.deletePage = deletePage;
@@ -63,14 +76,7 @@
         vm.pageId=$routeParams['pid'];
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-
-
-
             vm.pages=PageService.findPageByWebsiteId(vm.websiteId);
-
-
-
-
         }
         init();
 
@@ -78,8 +84,11 @@
             PageService.updatePage(vm.pageId, page);
         }
 
-        function deletePage() {
+        function deletePage(page) {
+            console.log(page);
             PageService.deletePage(vm.pageId);
+            vm.pages = PageService.findPageByWebsiteId(vm.websiteId);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
         }
     }
 

@@ -1,77 +1,49 @@
 
-    <nav class="navbar navbar-default navbar-fixed-top navbar-pages">
-        <div>
-            <div class="navbar-header align">
-                <p class="navbar-text pull-left" style="margin-left: 5px">
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page" class="glyphicon glyphicon-chevron-left  glyphicon-pages" style="text-decoration: none;"></a>
-                </p>
-                <a class="navbar-brand inherit" style="color: dimgray" style="text-decoration: none;">Choose Widgets</a>
 
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div >
+        <div class="navbar-header align">
+            <p class="navbar-text pull-left" style="margin-left: 5px">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-chevron-left inherit" style="text-decoration: none;"></a>
+            </p>
+            <a class="navbar-brand inherit">Choose Widgets</a>
 
-            </div>
+            <p class="navbar-text pull-right" style="margin-right: 10px">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-ok inherit" style="text-decoration: none;"></a>
+            </p>
         </div>
-    </nav>
+    </div>
+</nav>
 
     <div class="container">
 
         <form>
-            <div class="form-group">
-                <a href="widget-heading.view.client.html" class="page-list_label_style " style="text-decoration: none;">Header</a>
 
-            </div>
-            <div class="form-group">
-                <label class="page-list_label_style ">Label</label>
+            <div class="container-fluid">
+                <div ng-repeat="widget in model.widgets track by $index" class="list-group">
 
+                    <div ng-model="model.widget.widgetType" ng-switch="widget.widgetType">
+                        <div ng-switch-when="HEADER">
 
-            </div>
-            <div class="form-group">
-                <label class="page-list_label_style">HTML</label>
+                            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">Header</a>
+                        </div>
+                        <div ng-switch-when="IMAGE">
 
+                            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">Image</a>
+                        </div>
+                        <div ng-switch-when="YOUTUBE">
 
-            </div>
-            <div class="form-group">
-                <label class="page-list_label_style">Text Input</label>
+                            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">youtube</a>
+                        </div>
+                        <div ng-switch-when="HTML">
 
-
-            </div>
-            <div class="form-group">
-                <label class="page-list_label_style">Link</label>
-
-
-            </div>
-
-            <div class="form-group">
-                <label class="page-list_label_style">Button</label>
-
-
-            </div>
-
-            <div class="form-group">
-                <a href="widget-image.view.client.html" class="page-list_label_style " style="text-decoration: none;">Image</a>
-
-
-            </div>
-
-            <div class="form-group">
-                <a href="widget-youtube.view.client.html" class="page-list_label_style" style="text-decoration: none;">You Tube</a>
-
-
-            </div>
-
-            <div class="form-group">
-                <label class="page-list_label_style">Data Table</label>
-
-
-            </div>
-
-            <div class="form-group">
-                <label class="page-list_label_style">Repeater</label>
-
-
+                            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">Html</a>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </form>
-
 
     </div>
     <nav class="navbar navbar-default navbar-fixed-bottom navbar-pages">

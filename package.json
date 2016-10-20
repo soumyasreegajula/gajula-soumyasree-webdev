@@ -1,5 +1,5 @@
 {
-  "name": "web-dev",
+  "name": "webdev",
   "version": "1.0.0",
   "description": "Web Dev at Northeastern University",
   "main": "server.js",
@@ -13,5 +13,20 @@
     "start": "node server.js"
   },
   "author": "Jose G. Annunziato",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soumyasreegajula/gajula-soumyasree-webdev.git"
+  },
+  "keywords": [
+    "soumya"
+  ],
+  "bugs": {
+    "url": "https://github.com/soumyasreegajula/gajula-soumyasree-webdev/issues"
+  },
+  "homepage": "https://github.com/soumyasreegajula/gajula-soumyasree-webdev#readme"
 }

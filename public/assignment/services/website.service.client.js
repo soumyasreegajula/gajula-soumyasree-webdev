@@ -32,21 +32,7 @@
         return api;
 
         function createWebsite(userId, website)  {
-
-            for(var w in websites) {
-                if(websites[w].developerId === userId) {
-                    var newWebsite = {
-                        _id: new Date().getTime(),
-                        name: website.name,
-                        developerId: userId
-
-                    };
-                    websites.push(newWebsite);
-
-                }
-            }
-            return null;
-
+            websites.push(website);
 
         }
 
@@ -75,10 +61,11 @@
             for(var u in websites) {
                 var website = websites[u];
                 if(website._id === websiteId) {
-                    websites.remove(websiteId);
+                    delete websites[u];
+
                 }
             }
-            return null;
+
 
         }
 
@@ -87,9 +74,10 @@
                 var us = websites[u];
                 if(us._id === websiteId) {
                     us = website;
+
                 }
             }
-            return null;
+
         }
     }
 })();

@@ -32,36 +32,34 @@
             for(var p in pages) {
                 if(pages[p].websiteId === websiteId) {
 
-                    var newPage = {
-                        _id: new Date().getTime(),
-                        name: page.name,
-                        websiteId: websiteId
 
-                    };
-                    pages.push(newPage);
+                    pages.push(page);
 
                 }
             }
-            return null;
+
         }
 
 
         function findPageByWebsiteId(websiteId)  {
-
+            var result=[];
             for (var p in pages) {
                 if (pages[p].websiteId === websiteId) {
-                    return pages[p];
+                    result.push(pages[p]);
                 }
             }
+            return result;
 
 
         }
         function findPageById(pageId)  {
+            var result=[];
             for (var p in pages) {
                 if (pages[p]._id === pageId) {
-                    return pages[p];
+                    result.push(pages[p]);
                 }
             }
+            return result;
 
         }
 
@@ -70,10 +68,10 @@
             for(var p in pages) {
                 var page = pages[p];
                 if(page.pageId === pageId) {
-                    pages.remove(pageId);
+                    delete pages[p];
                 }
             }
-            return null;
+
 
         }
 
@@ -86,7 +84,7 @@
                     us = page;
                 }
             }
-            return null;
+
 
         }
     }
