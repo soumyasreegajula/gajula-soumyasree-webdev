@@ -51,8 +51,8 @@
         <form>
             <div class="container-fluid">
                 <form>
-
-                    <div ng-include src="'views/widget/widget-'+model.widget.widgetType.toLowerCase()+'.view.client.html'">Header</div>
+                    {{model.widgets}}
+                    <div ng-include src="'views/widget/widget-'+model.widgets.widgetType.toLowerCase()+'.view.client.html'">Header</div>
                 </form>
             </div>
         </form>

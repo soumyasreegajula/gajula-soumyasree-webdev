@@ -59,6 +59,7 @@
 
         function init() {
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+
         }
         init();
 
@@ -89,7 +90,8 @@
         vm.deleteWidget=deleteWidget;
 
         function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            vm.widgets = WidgetService.findWidgetById(vm.widgetId);
+
         }
         init();
 

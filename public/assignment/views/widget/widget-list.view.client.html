@@ -23,7 +23,7 @@
 
 <div class="container">
 
-        <div ng-model="model.widget.widgetType" ng-switch="widget.widgetType"
+        <div ng-switch="widget.widgetType"
              ng-repeat="widget in model.widgets">
             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}" class="pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
