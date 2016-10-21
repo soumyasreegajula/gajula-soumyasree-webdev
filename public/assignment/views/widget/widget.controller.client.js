@@ -78,11 +78,12 @@
         }
 
         function createWidget(widget){
+            console.log(widget);
             widget._id=(new Date()).getTime();
             widget.pageId=vm.pageId;
 
-            console.log(widget);
-            WidgetService.createWidget(widget.pageId,widget);
+
+            WidgetService.createWidget(vm.pageId,widget);
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
 
