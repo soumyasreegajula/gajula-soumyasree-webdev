@@ -22,7 +22,7 @@
             <div class="container-fluid">
                 <div ng-repeat="widget in model.widgets track by $index" class="list-group">
 
-                    <div ng-model="model.widget.widgetType" ng-switch="widget.widgetType">
+                    <div  ng-switch="widget.widgetType">
                         <div ng-switch-when="HEADER">
 
                             <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">Header</a>

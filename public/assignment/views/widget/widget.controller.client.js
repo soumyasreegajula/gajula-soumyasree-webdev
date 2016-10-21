@@ -48,13 +48,15 @@
 
 
 
-    function NewWidgetController($routeParams, WidgetService,$location) {
+    function NewWidgetController($routeParams, WidgetService,$location,$sce) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId  = $routeParams['wid'];
         vm.pageId  = $routeParams['pid'];
-        vm.widgetId = $routeParams['wgid'];
         vm.createWidget=createWidget;
+        vm.checkSafeHtml = checkSafeHtml;
+        vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
+
 
 
         function init() {
@@ -63,6 +65,18 @@
         }
         init();
 
+        function checkSafeHtml(html) {
+            return $sce.trustAsHtml(html);
+        }
+
+        function checkSafeYouTubeUrl(url) {
+            var parts = url.split('/');
+            var id = parts[parts.length - 1];
+            url = "https://www.youtube.com/embed/"+id;
+            console.log(url);
+            return $sce.trustAsResourceUrl(url);
+        }
+
         function createWidget(widget){
             widget._id=(new Date()).getTime();
             widget.pageId=vm.pageId;
@@ -70,7 +84,7 @@
             console.log(widget);
             WidgetService.createWidget(widget.pageId,widget);
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.widgetId+"/page/"+vm.pageId+"/widget");
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
 
         }
 
@@ -78,7 +92,7 @@
 
 
     function EditWidgetController($routeParams,
-                                      WidgetService,$sce) {
+                                      WidgetService,$sce,$location) {
         var vm  = this;
         vm.userId = $routeParams['uid'];
         vm.websiteId  = $routeParams['wid'];
@@ -110,14 +124,14 @@
         function updateWidget(widgetId, widget) {
             WidgetService.updatePage(vm.widgetId, widget);
             vm.widgets = WidgetService.findWidgetById(vm.widgetId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.widgetId+"/page/"+vm.pageId+"/widget");
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
         }
 
         function deleteWidget(widget) {
             console.log(widget);
             WidgetService.deleteWidget(vm.widgetId);
             vm.widgets = WidgetService.findWidgetById(vm.widgetId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.widgetId+"/page/"+vm.pageId+"/widget");
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
 
         }
     }

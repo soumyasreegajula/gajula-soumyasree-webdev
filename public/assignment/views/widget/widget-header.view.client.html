@@ -1,9 +1,6 @@
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width initial-scale=1 maximum-scale=1.0, user-scalable=no">
 
-<link href="styles.css" rel="stylesheet" type="text/css" />
+
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div >
@@ -38,8 +35,8 @@
             </div>
 
 
-            <a ng-click="model.deleteWidget(widget)" class="btn btn-danger btn-block">Delete</a>
-            <a ng-click="model.createWidget(widget)"  class="btn btn-danger btn-block">Create</a>
+            <a ng-click="model.deleteWidget(model.widget)" class="btn btn-danger btn-block">Delete</a>
+            <a ng-click="model.createWidget(model.widget)"  class="btn btn-success btn-block">Create</a>
         </form>
 
 
