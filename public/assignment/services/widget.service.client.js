@@ -33,12 +33,17 @@
         return api;
 
         function createWidget(pageId, widget)  {
+
             for(var w in widgets) {
                 if(widgets[w].pageId === pageId) {
 
+
                     widgets.push(widget);
+                    break;
+
                 }
             }
+            console.log(widgets);
 
         }
 
@@ -85,7 +90,7 @@
             for(var u in widgets) {
                 var us = widgets[u];
                 if(us._id === widgetId) {
-                    us = widget;
+                    widgets[u]=widget;
                 }
             }
 

@@ -23,7 +23,8 @@
         <form>
             <ul class="list-group">
 
-                <div ng-repeat="widget in model.widgets track by $index" class="form-group">
+                <div ng-repeat="widget in model.widget track by $index" class="form-group">
+
 
                     <p class="pull-right">
                     <div ng-include src="'views/widget/widget-'+widget.widgetType.toLowerCase()+'.view.client.html'">

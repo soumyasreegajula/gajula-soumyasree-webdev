@@ -66,15 +66,18 @@
 
         function init() {
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+
 
 
         }
         init();
 
         function updateWebsite(website) {
+            console.log(website);
             WebsiteService.updateWebsite(vm.websiteId, website);
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website/new");
+
+            $location.url("/user/"+vm.userId+"/website");
         }
 
         function deleteWebsite(website) {

@@ -27,6 +27,7 @@
 
             function init() {
                 vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+                console.log(vm.widgets);
             }
             init();
 
@@ -38,7 +39,7 @@
                 var parts = url.split('/');
                 var id = parts[parts.length - 1];
                 url = "https://www.youtube.com/embed/"+id;
-                console.log(url);
+
                 return $sce.trustAsResourceUrl(url);
             }
         }
@@ -61,6 +62,9 @@
 
         function init() {
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+
+
 
         }
         init();
@@ -77,15 +81,16 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        function createWidget(widget){
-            console.log(widget);
-            widget._id=(new Date()).getTime();
-            widget.pageId=vm.pageId;
+        function createWidget(widgetType){
 
+            var widgets={};
+            widgets._id=(new Date()).getTime();
+            widgets.widgetType=widgetType;
 
-            WidgetService.createWidget(vm.pageId,widget);
+            WidgetService.createWidget(vm.pageId,widgets);
             vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widgets._id);
 
         }
 
@@ -103,9 +108,14 @@
         vm.checkSafeYouTubeUrl = checkSafeYouTubeUrl;
         vm.updateWidget=updateWidget;
         vm.deleteWidget=deleteWidget;
+        vm.createWidget=createWidget;
+
 
         function init() {
-            vm.widgets = WidgetService.findWidgetById(vm.widgetId);
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+
+            vm.widget = WidgetService.findWidgetById(vm.widgetId);
+
 
         }
         init();
@@ -122,9 +132,9 @@
             return $sce.trustAsResourceUrl(url);
         }
 
-        function updateWidget(widgetId, widget) {
-            WidgetService.updatePage(vm.widgetId, widget);
-            vm.widgets = WidgetService.findWidgetById(vm.widgetId);
+        function updateWidget(widget) {
+
+            WidgetService.updateWidget(vm.widgetId, widget);
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
         }
 
@@ -135,6 +145,20 @@
             $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
 
         }
+
+
+        function createWidget(widget){
+
+
+            WidgetService.createWidget(vm.widgetId,widget);
+
+            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            console.log(vm.widgets);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/");
+
+        }
+
+
     }
 
 

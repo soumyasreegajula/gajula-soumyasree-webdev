@@ -73,7 +73,7 @@
             for(var u in websites) {
                 var us = websites[u];
                 if(us._id === websiteId) {
-                    us = website;
+                    websites[u]=website;
 
                 }
             }
