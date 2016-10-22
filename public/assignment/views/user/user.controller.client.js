@@ -15,6 +15,7 @@
 
         function login(username, password) {
             var user = UserService.findUserByCredentials(username, password);
+            console.log(user);
             if(user === null) {
                 vm.error = "No such user";
             } else {
@@ -47,11 +48,13 @@
 
 
 
-    function ProfileController($routeParams, UserService) {
+    function ProfileController($routeParams, UserService,$location) {
 
 
 
         var vm = this;
+        vm.updateUser=updateUser;
+        vm.deleteUser=deleteUser;
 
         vm.userId = $routeParams['uid'];
 
@@ -62,6 +65,16 @@
 
         }
         init();
+        function updateUser(user){
+            UserService.updateUser(vm.userId,user);
+            $location.url("/user/" + user._id);
+
+        }
+        function deleteUser(){
+            UserService.deleteUser(vm.userId);
+
+
+        }
 
 
     }
