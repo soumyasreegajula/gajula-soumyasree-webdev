@@ -75,11 +75,7 @@
                 controller: "EditWidgetController",
                 controllerAs: "model"
             })
-            .when("test/index.html", {
-                templateUrl: "test/index.html",
-                controller: "TestController",
-                controllerAs: "model"
-            })
+
 
             .otherwise({
                 redirectTo: "/home"
