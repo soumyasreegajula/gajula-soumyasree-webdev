@@ -1,39 +1,50 @@
-
-
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div >
-        <div class="navbar-header align">
-            <p class="navbar-text pull-left" style="margin-left: 5px">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-chevron-left inherit" style="text-decoration: none;"></a>
+    <div class="container-fluid">
+        <div class="navbar-inner">
+            <p class="navbar-text pull-left">
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="navbar-link">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
             </p>
-            <a class="navbar-brand inherit">Choose Widgets</a>
-
-            <p class="navbar-text pull-right" style="margin-right: 10px">
-                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-ok inherit" style="text-decoration: none;"></a>
+            <a class="navbar-brand" href="#">
+                Choose Widget
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <ul class="list-group">
+        <li class ="list-group-item">
+            <a ng-click="model.createWidget('HEADER')">
+                Header
+            </a>
+        </li>
+        <li class ="list-group-item">
+            <a ng-click="model.createWidget('IMAGE')">
+                Image
+            </a>
+        </li>
+        <li class ="list-group-item">
+            <a ng-click="model.createWidget('YOUTUBE')">
+                Youtube
+            </a>
+        </li>
+        <li class ="list-group-item">
+            <a ng-click="model.createWidget('HTML')">
+                HTML
+            </a>
+        </li>
+    </ul>
+</div>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid">
+        <div class="navbar-inner">
+            <a class="navbar-brand" href="#"></a>
+            <p class="navbar-text pull-right">
+                <a href="#/user/{{model.userId}}" class="navbar-link">
+                    <span class="glyphicon glyphicon-user text-primary"></span>
+                </a>
             </p>
         </div>
     </div>
 </nav>
-
-    <div class="container">
-
-        <form>
-
-            <div class="container-fluid">
-
-                        <p><a ng-click="model.createWidget('header')">Header</a></p>
-                        <p><a ng-click="model.createWidget('html')">Html</a></p>
-                        <p><a ng-click="model.createWidget('youtube')">Youtube</a></p>
-                        <p><a ng-click="model.createWidget('image')">Image</a></p>
-
-            </div>
-
-        </form>
-
-    </div>
-    <nav class="navbar navbar-default navbar-fixed-bottom navbar-pages">
-        <p class="navbar-text pull-right" style="margin-right: 15px">
-            <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user page-list_label_style   glyphicon-pages-user" style="text-decoration: none;"></a>
-        </p>
-
-    </nav>

@@ -19,9 +19,12 @@
 
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-
-
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (response) {
+                    vm.websites = response.data;
+                    console.log(vm.websites);
+                });
         }
         init();
     }
@@ -35,7 +38,12 @@
 
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (response) {
+                    vm.websites = response.data;
+                });
+
 
         }
         init();
@@ -47,7 +55,7 @@
             console.log(website);
             WebsiteService.createWebsite(website.developerId,website);
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website/new");
+            $location.url("/user/"+vm.userId+"/website");
         }
 
     }
@@ -65,27 +73,44 @@
 
 
         function init() {
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            vm.website = WebsiteService.findWebsiteById(vm.websiteId);
+            WebsiteService
+                .findWebsiteById(vm.websiteId)
+                .then(function (response) {
+                    vm.website = response.data;});
 
-
-
+            WebsiteService
+                .findWebsitesByUser(vm.userId)
+                .then(function (response) {
+                    vm.websites = response.data;
+                });
         }
+
         init();
 
         function updateWebsite(website) {
-            console.log(website);
-            WebsiteService.updateWebsite(vm.websiteId, website);
-
-            $location.url("/user/"+vm.userId+"/website");
+            WebsiteService
+                .updateWebsite(vm.websiteId,website)
+                .then(function () {
+                    $location.url("/user/"+ vm.userId + "/website");
+                });
         }
 
-        function deleteWebsite(website) {
+        function deleteWebsite(websiteId) {
+            WebsiteService
+                .deleteWebsite(vm.websiteId)
+                .then(function () {
+                    $location.url("/user/"+ vm.userId + "/website");
+                });
+        }
+
+        function createWebsite(website){
+            website._id=(new Date()).getTime();
+            website.developerId=vm.userId;
+
             console.log(website);
-            WebsiteService.deleteWebsite(vm.websiteId);
+            WebsiteService.createWebsite(website.developerId,website);
             vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
             $location.url("/user/"+vm.userId+"/website/new");
-
         }
 
 

@@ -14,16 +14,18 @@
         vm.login = login;
 
         function login(username, password) {
-            var user = UserService.findUserByCredentials(username, password);
-            console.log(user);
-            if(user === null) {
-                vm.error = "No such user";
-            } else {
+            UserService.findUserByCredentials(username,password)
+                .then(function (response) {
+                    var user = response.data;
+                    console.log(user);
+                    if(user){
+                        console.log(user);
+                        $location.url("/user/"+user._id);
+                    } else {
+                        vm.error = "User not found";
+                    }
+                });
 
-                $location.url("/user/" + user._id);
-
-
-            }
         }
     }
 
@@ -33,18 +35,42 @@
         var vm = this;
 
         vm.register = register;
+        var userid=(new Date()).getTime();
 
         function register (username, password, password2) {
-            if (password===password2) {
-                UserService
-                    .createUser(username, password);
+            console.log("inside reguster");
+            if(username == null || password == null || password2 == null ||
+                username == "" || password == "" || password2 == ""){
+                vm.error = "Username and Password cannot be blank";
+            } else if(password !== password2) {
+                vm.error = "Password did not match";
+            } else {
+                UserService.findUserByUsername(username)
+                    .then(function (response) {
+                        var prevUser = response.data;
+                        if(prevUser){
+                            vm.error = "Username already Exists";
+                        } else {
+                            var user = {
+                                _id: userid,
+                                username: username,
+                                password: password,
+                                firstName: "",
+                                lastName: ""
+                            };
+                            UserService.createUser(user)
 
-                var user=UserService.findUserByUsername(username);
-                $location.url("/user/" + user._id);
+                                .then(function () {
+                                    console.log("inside create user");
+                                    $location.url("/user/"+userid);
+                                });
+                        }
+                    });
             }
         }
-
     }
+
+
 
 
 
@@ -60,18 +86,35 @@
 
 
         function init() {
-            vm.user = UserService.findUserById(vm.userId);
-            return vm.user._id;
-
+            UserService.findUserById(vm.userId)
+                .then(function (response) {
+                    vm.user = response.data;
+                });
         }
         init();
         function updateUser(user){
-            UserService.updateUser(vm.userId,user);
-            $location.url("/user/" + user._id);
+            UserService.updateUser(vm.userId, user)
+                .then(
+                    function(response) {
+                        vm.success = "Updated the user details successfully";
+                    },
+                    function(error) {
+                        vm.error = "Unable to update user details"
+                    }
+                );
 
         }
         function deleteUser(){
-            UserService.deleteUser(vm.userId);
+            UserService
+                .deleteUser(vm.userId)
+                .then(
+                    function(){
+                        $location.url("/login");
+                    },
+                    function() {
+                        vm.error = "Unable to remove user"
+                    }
+                );
 
 
         }

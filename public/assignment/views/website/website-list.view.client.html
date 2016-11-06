@@ -20,6 +20,7 @@
             <form>
                 <ul class="list-group">
                 <div   ng-repeat="website in model.websites" class="form-group">
+
                     <a ng-model=model.website.name href="#/user/{{model.userId}}/website/{{website._id}}/page" class="page-list_label_style" style="text-decoration: none;">{{website.name}}</a>
                     <p class="pull-right">
                         <a ng-model=model.website.name href="#/user/{{model.userId}}/website/{{website._id}}" class="glyphicon glyphicon-cog " style="text-decoration: none;" ></a>

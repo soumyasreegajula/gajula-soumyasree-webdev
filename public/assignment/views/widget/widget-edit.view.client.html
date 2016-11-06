@@ -11,7 +11,7 @@
                 </a>
 
                 <p class="navbar-text pull-right" style="margin-right: 10px">
-                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-ok inherit" style="text-decoration: none;"></a>
+                    <a  ng-click="model.updateWidget(model.widget)" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget" class="glyphicon glyphicon-ok inherit" style="text-decoration: none;"></a>
                 </p>
             </div>
     </div>
@@ -24,14 +24,20 @@
         <form>
             <ul class="list-group">
 
-                <div ng-repeat="widget in model.widget track by $index" class="form-group">
+                <div ng-switch="model.widget.widgetType">
 
-
-                    <p class="pull-right">
-                    <div ng-include src="'views/widget/widget-'+widget.widgetType.toLowerCase()+'.view.client.html'">
+                    <div ng-switch-when="HEADER">
+                        <ng-include src="'views/widget/widget-header.view.client.html'"/>
                     </div>
-                    </p>
-
+                    <div ng-switch-when="IMAGE">
+                        <ng-include src="'views/widget/widget-image.view.client.html'"/>
+                    </div>
+                    <div ng-switch-when="YOUTUBE">
+                        <ng-include src="'views/widget/widget-youtube.view.client.html'"/>
+                    </div>
+                    <div ng-switch-when="HTML">
+                        <ng-include src="'views/widget/widget-html.view.client.html'"/>
+                    </div>
                 </div>
 
             </ul>
