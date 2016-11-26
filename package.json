@@ -1,0 +1,33 @@
+{
+  "name": "webdev",
+  "version": "1.0.0",
+  "description": "Web Dev at Northeastern University",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.15",
+    "multer": "^1.2.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Soumya",
+  "license": "ISC",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/soumyasreegajula/gajula-soumyasree-webdev.git"
+  },
+  "keywords": [
+    "soumya"
+  ],
+  "bugs": {
+    "url": "https://github.com/soumyasreegajula/gajula-soumyasree-webdev/issues"
+  },
+  "homepage": "https://github.com/soumyasreegajula/gajula-soumyasree-webdev#readme"
+}
