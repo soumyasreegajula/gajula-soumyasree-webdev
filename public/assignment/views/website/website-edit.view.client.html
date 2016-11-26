@@ -33,7 +33,7 @@
         <form>
             <ul class="list-group">
             <div ng-repeat="website in model.websites" class="form-group">
-                <a ng-model="model.websites.name" href="#/user/{{model.userId}}/website/{{website._id}}/page" class="page-list_label_style">{{website.name}}</a>
+                <a ng-model="model.website.name" href="#/user/{{model.userId}}/website/{{website._id}}/page" class="page-list_label_style">{{website.name}}</a>
                 <p class="pull-right">
                     <a href="#/user/{{model.userId}}/website/{{website._id}}" class="glyphicon glyphicon-cog " style="text-decoration: none;"></a>
                 </p>

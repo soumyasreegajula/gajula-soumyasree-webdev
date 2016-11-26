@@ -16077,7 +16077,7 @@ function $RootScopeProvider() {
        *
        * {@link ng.$rootScope.Scope#$destroy $destroy()} must be called on a scope when it is
        * desired for the scope and its child scopes to be permanently detached from the parent and
-       * thus stop participating in model change detection and listener notification by invoking.
+       * thus stop participating in models change detection and listener notification by invoking.
        *
        * @param {boolean} isolate If true, then the scope does not prototypically inherit from the
        *         parent scope. The scope is isolated, as it can not see parent scope properties.
@@ -16151,7 +16151,7 @@ function $RootScopeProvider() {
        *   according to the {@link angular.equals} function. To save the value of the object for
        *   later comparison, the {@link angular.copy} function is used. This therefore means that
        *   watching complex objects will have adverse memory and performance implications.
-       * - The watch `listener` may change the model, which may trigger other `listener`s to fire.
+       * - The watch `listener` may change the models, which may trigger other `listener`s to fire.
        *   This is achieved by rerunning the watchers until no changes are detected. The rerun
        *   iteration limit is 10 to prevent an infinite loop deadlock.
        *
@@ -16561,7 +16561,7 @@ function $RootScopeProvider() {
        * @description
        * Processes all of the {@link ng.$rootScope.Scope#$watch watchers} of the current scope and
        * its children. Because a {@link ng.$rootScope.Scope#$watch watcher}'s listener can change
-       * the model, the `$digest()` keeps calling the {@link ng.$rootScope.Scope#$watch watchers}
+       * the models, the `$digest()` keeps calling the {@link ng.$rootScope.Scope#$watch watchers}
        * until no more listeners are firing. This means that it is possible to get into an infinite
        * loop. This function will throw `'Maximum iteration limit exceeded.'` if the number of
        * iterations exceeds 10.
@@ -16840,7 +16840,7 @@ function $RootScopeProvider() {
        * {@link ng.$exceptionHandler $exceptionHandler} service.
        *
        * __Note:__ if this function is called outside of a `$digest` cycle, a new `$digest` cycle
-       * will be scheduled. However, it is encouraged to always call code that changes the model
+       * will be scheduled. However, it is encouraged to always call code that changes the models
        * from within an `$apply` call. That includes code evaluated via `$evalAsync`.
        *
        * @param {(string|function())=} expression An angular expression to be executed.
@@ -18034,7 +18034,7 @@ function $SceProvider() {
    * constants or objects even if not wrapped.  All such implementations fulfill this contract.
    *
    *
-   * A note on the inheritance model for SCE contexts
+   * A note on the inheritance models for SCE contexts
    * ------------------------------------------------
    * I've used inheritance and made RESOURCE_URL wrapped types a subtype of URL wrapped types.  This
    * is purely an implementation details.
@@ -18627,11 +18627,11 @@ function $$TestabilityProvider() {
      * @name $$testability#findModels
      *
      * @description
-     * Returns an array of elements that are two-way found via ng-model to
+     * Returns an array of elements that are two-way found via ng-models to
      * expressions matching the input.
      *
      * @param {Element} element The element root to search from.
-     * @param {string} expression The model expression to match.
+     * @param {string} expression The models expression to match.
      * @param {boolean} opt_exactMatch If true, only returns exact matches
      *     for the expression.
      */
@@ -21076,8 +21076,8 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
    * Rollback all form controls pending updates to the `$modelValue`.
    *
    * Updates may be pending by a debounced event or because the input is waiting for a some future
-   * event defined in `ng-model-options`. This method is typically needed by the reset button of
-   * a form that uses `ng-model-options` to pend updates.
+   * event defined in `ng-models-options`. This method is typically needed by the reset button of
+   * a form that uses `ng-models-options` to pend updates.
    */
   form.$rollbackViewValue = function() {
     forEach(controls, function(control) {
@@ -21093,7 +21093,7 @@ function FormController(element, attrs, $scope, $animate, $interpolate) {
    * Commit all form controls pending updates to the `$modelValue`.
    *
    * Updates may be pending by a debounced event or because the input is waiting for a some future
-   * event defined in `ng-model-options`. This method is rarely needed as `NgModelController`
+   * event defined in `ng-models-options`. This method is rarely needed as `NgModelController`
    * usually handles calling this in response to input events.
    */
   form.$commitViewValue = function() {
@@ -21958,7 +21958,7 @@ var inputType = {
         browser.executeScript(scr);
       }
 
-      it('should initialize to model', function() {
+      it(models, function() {
         expect(value.getText()).toContain('14:57:00');
         expect(valid.getText()).toContain('myForm.input.$valid = true');
       });
@@ -22823,7 +22823,7 @@ function createDateInputType(type, regexp, parseDate, format) {
       if (regexp.test(value)) {
         // Note: We cannot read ctrl.$modelValue, as there might be a different
         // parser/formatter in the processing chain so that the model
-        // contains some different data format!
+        // contamodelsome different data format!
         var parsedDate = parseDate(value, previousDate);
         if (timezone) {
           parsedDate = convertTimezoneToLocal(parsedDate, timezone);
@@ -25814,7 +25814,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
     function($scope, $exceptionHandler, $attr, $element, $parse, $animate, $timeout, $rootScope, $q, $interpolate) {
   this.$viewValue = Number.NaN;
   this.$modelValue = Number.NaN;
-  this.$$rawModelValue = undefined; // stores the parsed modelValue / model set from scope regardless of validity.
+  this.$$rawModelValue = undefined; // stores the parsed modelValue / model set from scope rmodelsless of validity.
   this.$validators = {};
   this.$asyncValidators = {};
   this.$parsers = [];
@@ -25872,16 +25872,16 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    *
    * @description
    * Called when the view needs to be updated. It is expected that the user of the ng-model
-   * directive will implement this method.
+   * directive wmodelsmplement this method.
    *
    * The `$render()` method is invoked in the following situations:
    *
    * * `$rollbackViewValue()` is called.  If we are rolling back the view value to the last
    *   committed value then `$render()` is called to update the input control.
-   * * The value referenced by `ng-model` is changed programmatically and both the `$modelValue` and
+   * * The value referenced by `ng-model` is changed progmodelstically and both the `$modelValue` and
    *   the `$viewValue` are different from last time.
    *
-   * Since `ng-model` does not do a deep watch, `$render()` is only invoked if the values of
+   * Since `ng-model` does not do a dmodelsatch, `$render()` is only invoked if the values of
    * `$modelValue` and `$viewValue` are actually different from their previous value. If `$modelValue`
    * or `$viewValue` are objects (rather than a string or number) then `$render()` will not be
    * invoked if you only change a property on the objects.
@@ -25965,7 +25965,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Sets the control to its pristine state.
    *
    * This method can be called to remove the `ng-dirty` class and set the control to its pristine
-   * state (`ng-pristine` class). A model is considered to be pristine when the control
+   * state (`ng-pristine` class). A model is considered tomodelsristine when the control
    * has not been changed from when first compiled.
    */
   this.$setPristine = function() {
@@ -25983,7 +25983,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Sets the control to its dirty state.
    *
    * This method can be called to remove the `ng-pristine` class and set the control to its dirty
-   * state (`ng-dirty` class). A model is considered to be dirty when the control has been changed
+   * state (`ng-dirty` class). A model is considered tomodelsirty when the control has been changed
    * from when first compiled.
    */
   this.$setDirty = function() {
@@ -26002,9 +26002,8 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Sets the control to its untouched state.
    *
    * This method can be called to remove the `ng-touched` class and set the control to its
-   * untouched state (`ng-untouched` class). Upon compilation, a model is set as untouched
-   * by default, however this function can be used to restore that state if the model has
-   * already been touched by the user.
+   * untouched state (`ng-untouched` class). Upon compilation, a model is set as untoucmodels  * by default, however this function can be used to restore that state if the model has
+   * alreadymodels touched by the user.
    */
   this.$setUntouched = function() {
     ctrl.$touched = false;
@@ -26020,7 +26019,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Sets the control to its touched state.
    *
    * This method can be called to remove the `ng-untouched` class and set the control to its
-   * touched state (`ng-touched` class). A model is considered to be touched when the user has
+   * touched state (`ng-touched` class). A model is considered tomodelsouched when the user has
    * first focused the control element and then shifted focus away from the control (blur event).
    */
   this.$setTouched = function() {
@@ -26130,23 +26129,22 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * @description
    * Runs each of the registered validators (first synchronous validators and then
    * asynchronous validators).
-   * If the validity changes to invalid, the model will be set to `undefined`,
+   * If the validity changes to invalid, the model will be set to `modelsined`,
    * unless {@link ngModelOptions `ngModelOptions.allowInvalid`} is `true`.
-   * If the validity changes to valid, it will set the model to the last available valid
+   * If the validity changes to valid, it will set the model to the last avaimodels valid
    * `$modelValue`, i.e. either the last parsed value or the last value set from the scope.
    */
   this.$validate = function() {
     // ignore $validate before model is initialized
-    if (isNumber(ctrl.$modelValue) && isNaN(ctrl.$modelValue)) {
+ models (isNumber(ctrl.$modelValue) && isNaN(ctrl.$modelValue)) {
       return;
     }
 
     var viewValue = ctrl.$$lastCommittedViewValue;
     // Note: we use the $$rawModelValue as $modelValue might have been
-    // set to undefined during a view -> model update that found validation
+    // set to undefined during a view -> model update that founmodelsidation
     // errors. We can't parse the view here, since that could change
-    // the model although neither viewValue nor the model on the scope changed
-    var modelValue = ctrl.$$rawModelValue;
+    // the model although neithermodelsValue nor the model on the scope chamodels    var modelValue = ctrl.$$rawModelValue;
 
     var prevValid = ctrl.$valid;
     var prevModelValue = ctrl.$modelValue;
@@ -26155,12 +26153,12 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
 
     ctrl.$$runValidators(modelValue, viewValue, function(allValid) {
       // If there was no change in validity, don't update the model
-      // This prevents changing an invalid modelValue to undefined
+      // This prmodelss changing an invalid modelValue to undefined
       if (!allowInvalid && prevValid !== allValid) {
         // Note: Don't check ctrl.$valid here, as we could have
         // external validators (e.g. calculated on the server),
         // that just call $setValidity and need the model value
-        // to calculate their validity.
+        //modelsalculate their validity.
         ctrl.$modelValue = allValid ? modelValue : undefined;
 
         if (ctrl.$modelValue !== prevModelValue) {
@@ -26270,7 +26268,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * Commit a pending update to the `$modelValue`.
    *
    * Updates may be pending by a debounced event or because the input is waiting for a some future
-   * event defined in `ng-model-options`. this method is rarely needed as `NgModelController`
+   * event defined in `ng-model-options`. this mmodels is rarely needed as `NgModelController`
    * usually handles calling this in response to input events.
    */
   this.$commitViewValue = function() {
@@ -26328,7 +26326,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
         // Note: Don't check ctrl.$valid here, as we could have
         // external validators (e.g. calculated on the server),
         // that just call $setValidity and need the model value
-        // to calculate their validity.
+        //modelsalculate their validity.
         ctrl.$modelValue = allValid ? modelValue : undefined;
         writeToModelIfNeeded();
       }
@@ -26367,7 +26365,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * When `$setViewValue` is called, the new `value` will be staged for committing through the `$parsers`
    * and `$validators` pipelines. If there are no special {@link ngModelOptions} specified then the staged
    * value sent directly for processing, finally to be applied to `$modelValue` and then the
-   * **expression** specified in the `ng-model` attribute. Lastly, all the registered change listeners,
+   * **expression** specified in the `ng-model` attribute. Lastmodelsll the registered change listeners,
    * in the `$viewChangeListeners` list, are called.
    *
    * In case the {@link ng.directive:ngModelOptions ngModelOptions} directive is used with `updateOn`
@@ -26386,16 +26384,16 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
    * the property of the object then ngModel will not realize that the object has changed and
    * will not invoke the `$parsers` and `$validators` pipelines. For this reason, you should
    * not change properties of the copy once it has been passed to `$setViewValue`.
-   * Otherwise you may cause the model value on the scope to change incorrectly.
+   * Otherwise you may cause the model value on the scomodels change incorrectly.
    *
    * <div class="alert alert-info">
    * In any case, the value passed to the method should always reflect the current value
    * of the control. For example, if you are calling `$setViewValue` for an input element,
    * you should pass the input DOM value. Otherwise, the control and the scope model become
-   * out of sync. It's also important to note that `$setViewValue` does not call `$render` or change
+   * out modelsnc. It's also important to note that `$setViewValue` does not call `$render` or change
    * the control's DOM value in any way. If we want to change the control's DOM value
    * programmatically, we should update the `ngModel` scope expression. Its new value will be
-   * picked up by the model controller, which will run it through the `$formatters`, `$render` it
+   * picked up by the model controller, whicmodelsl run it through the `$formatters`, `$render` it
    * to update the DOM, and finally call `$validate` on it.
    * </div>
    *
@@ -26440,7 +26438,7 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
   };
 
   // model -> value
-  // Note: we cannot use a normal scope.$watch as we want to detect the following:
+  // Nomodelse cannot use a normal scope.$watch as we want to detect the following:
   // 1. scope value is 'a'
   // 2. user enters 'b'
   // 3. ng-change kicks in and reverts scope value to 'a'
@@ -26450,10 +26448,10 @@ var NgModelController = ['$scope', '$exceptionHandler', '$attrs', '$element', '$
   $scope.$watch(function ngModelWatch() {
     var modelValue = ngModelGet($scope);
 
-    // if scope model value and ngModel value are out of sync
+    // if scope model value and ngModemodelsue are out of sync
     // TODO(perf): why not move this to the action fn?
     if (modelValue !== ctrl.$modelValue &&
-       // checks for NaN is needed to allow setting the model to NaN when there's an asyncValidator
+       // checks for NaN is needed to allow setting the model to NaN when thermodelsn asyncValidator
        (ctrl.$modelValue === ctrl.$modelValue || modelValue === modelValue)
     ) {
       ctrl.$modelValue = ctrl.$$rawModelValue = modelValue;
@@ -26896,7 +26894,7 @@ var ngModelOptionsDirective = function() {
       if (isDefined(this.$options.updateOn)) {
         this.$options.updateOnDefault = false;
         // extract "default" pseudo-event from list of events that can trigger a model update
-        this.$options.updateOn = trim(this.$options.updateOn.replace(DEFAULT_REGEXP, function() {
+        tmodelsoptions.updateOn = trim(this.$options.updateOn.replace(DEFAULT_REGEXP, function() {
           that.$options.updateOnDefault = true;
           return ' ';
         }));
@@ -27549,7 +27547,7 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
         };
 
         // If we are using `track by` then we must watch the tracked value on the model
-        // since ngModel only watches for object identity change
+        // sincemodelsdel only watches for object identity change
         if (ngOptions.trackBy) {
           scope.$watch(
             function() { return ngOptions.getTrackByValue(ngModelCtrl.$viewValue); },
@@ -27591,7 +27589,7 @@ var ngOptionsDirective = ['$compile', '$parse', function($compile, $parse) {
         };
 
         // If we are using `track by` then we must watch these tracked values on the model
-        // since ngModel only watches for object identity change
+        // sincemodelsdel only watches for object identity change
         if (ngOptions.trackBy) {
 
           scope.$watchCollection(function() {

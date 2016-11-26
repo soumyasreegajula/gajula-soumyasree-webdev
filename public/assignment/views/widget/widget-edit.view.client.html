@@ -21,10 +21,11 @@
 
 <div class="row container-fluid">
 
+
         <form>
             <ul class="list-group">
 
-                <div ng-switch="model.widget.widgetType">
+                <div ng-switch="model.widget.type">
 
                     <div ng-switch-when="HEADER">
                         <ng-include src="'views/widget/widget-header.view.client.html'"/>
@@ -38,6 +39,12 @@
                     <div ng-switch-when="HTML">
                         <ng-include src="'views/widget/widget-html.view.client.html'"/>
                     </div>
+
+
+                    <div ng-switch-when="TEXT">
+                        <ng-include src="'views/widget/widget-input-edit.view.client.html'"/>
+                    </div>
+
                 </div>
 
             </ul>
@@ -45,20 +52,11 @@
     </div>
 
 
-
-
-
-
-
-
-
-
-
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="navbar navbar-default navbar-fixed-bottom navbar-pages">
     <p class="navbar-text pull-right" style="margin-right: 15px">
-        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user page-list_label_style inherit" style="text-decoration: none;"></a>
+        <a href="#/user/{{model.userId}}" class="glyphicon glyphicon-user page-list_label_style   glyphicon-pages-user" style="text-decoration: none;"></a>
+    </p>
+    <p class="navbar-text pull-left" style="margin-left: 5px">
+        <a href="/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page}}/widget" class="glyphicon glyphicon-play page-list_label_style glyphicon-pages" style="text-decoration: none;"></a>
     </p>
 </nav>
-
-
-

@@ -18,9 +18,10 @@
 
         function init() {
             PageService
-                .findPageByWebsiteId(vm.websiteId)
+                .findAllPagesForWebsite(vm.websiteId)
                 .then(function (response) {
                     vm.pages = response.data;
+                    console.log(vm.pages);
                 });
             WebsiteService
                 .findWebsitesByUser(vm.userId)
@@ -43,7 +44,7 @@
         vm.websiteId = $routeParams['wid'];
         function init() {
             PageService
-                .findPageByWebsiteId(vm.websiteId)
+                .findAllPagesForWebsite(vm.websiteId)
                 .then(function (response) {
                     vm.pages = response.data;
                 });
@@ -56,17 +57,22 @@
         }
         init();
 
-        function createPage(page){
-            page._id=(new Date()).getTime();
-            page.websiteId=vm.websiteId;
-
-            console.log(page);
-            PageService
-                .createPage(vm.websiteId,page)
-                .then(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                });
-
+        function createPage(name,title) {
+            vm.error = null;
+            if (name == null || name === ""){
+                vm.error = "All details must be entered";
+            } else {
+                var page = {
+                    "_website": vm.websiteId,
+                    "name": name,
+                    "title": title
+                };
+                PageService
+                    .createPage(vm.websiteId,page)
+                    .then(function () {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    });
+            }
         }
 
 
@@ -87,20 +93,26 @@
                     vm.page = response.data;
                 })
             PageService
-                .findPageByWebsiteId(vm.websiteId)
+                .findAllPagesForWebsite(vm.websiteId)
                 .then(function (response) {
                     vm.pages = response.data;
                 })
         }
         init();
 
-        function updatePage() {
-            PageService
-                .updatePage(vm.pageId,vm.page)
-                .then(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
-                });
+        function updatePage(pageId,page) {
+            vm.error = null;
+            if(page.name == null || page.name === ""){
+                vm.error = "All details must be entered"
+            } else {
+                PageService
+                    .updatePage(pageId,page)
+                    .then(function () {
+                        $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                    });
+            }
         }
+
 
 
 

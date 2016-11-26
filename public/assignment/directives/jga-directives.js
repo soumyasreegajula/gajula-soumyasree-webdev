@@ -7,19 +7,19 @@
         .directive("sortable",sortable);
     function sortable(){
         function linker(scope,element,attributes){
-            var start=-1;
-            var end=-1;
+            var initial=-1;
+            var final=-1;
 
             element = $(element);
             element
                 .sortable({
                     start:function(event,ui){
-                        start=$(ui.item).index();
+                        initial=$(ui.item).index();
 
                     },
                     stop:function(event,ui){
-                        end=$(ui.item).index();
-                        scope.sortableController.sort(start,end);
+                        final=$(ui.item).index();
+                        scope.sortableController.sort(initial,final);
 
                     }
                 });
@@ -37,9 +37,9 @@
         var vm=this;
         vm.sort = sort;
         vm.pageId=$routeParams['pid'];
-        console.log(vm.pageId);
+
         function sort(start,end){
-            WidgetService.sort(vm.pageId,start,end);
+            WidgetService.reorderWidgets(start,end,vm.pageId);
         }
     }
 })();

@@ -23,7 +23,7 @@
                 .findWebsitesByUser(vm.userId)
                 .then(function (response) {
                     vm.websites = response.data;
-                    console.log(vm.websites);
+
                 });
         }
         init();
@@ -48,17 +48,29 @@
         }
         init();
 
-        function createWebsite(website){
-            website._id=(new Date()).getTime();
-            website.developerId=vm.userId;
+        function createWebsite(name,description){
+            vm.error = null;
+            if(name == null || name === ""){
+                vm.error = "Name cannot be blank !!"
+            } else {
+                var newWebsite = {
+                    "_user": vm.userId,
+                    "name": name,
+                    "description": description
+                };
+                WebsiteService
+                    .createWebsite(vm.userId,newWebsite)
+                    .then(function (response) {
 
-            console.log(website);
-            WebsiteService.createWebsite(website.developerId,website);
-            vm.websites = WebsiteService.findWebsitesByUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website");
+                        $location.url("/user/"+ vm.userId + "/website");
+                    });
+            }
         }
 
     }
+
+
+
 
     function EditWebsiteController($routeParams, WebsiteService,$location) {
         var vm = this;

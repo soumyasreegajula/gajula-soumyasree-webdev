@@ -17,15 +17,19 @@
             UserService.findUserByCredentials(username,password)
                 .then(function (response) {
                     var user = response.data;
-                    console.log(user);
+
                     if(user){
-                        console.log(user);
+
                         $location.url("/user/"+user._id);
                     } else {
                         vm.error = "User not found";
                     }
                 });
 
+        }
+
+        vm.register = function() {
+            $location.url("/register");
         }
     }
 
@@ -35,34 +39,41 @@
         var vm = this;
 
         vm.register = register;
-        var userid=(new Date()).getTime();
+
+
 
         function register (username, password, password2) {
-            console.log("inside reguster");
+
             if(username == null || password == null || password2 == null ||
                 username == "" || password == "" || password2 == ""){
-                vm.error = "Username and Password cannot be blank";
+                vm.error = "Username and Password must be entered";
+
             } else if(password !== password2) {
-                vm.error = "Password did not match";
+                vm.error = "Password must match";
+
             } else {
                 UserService.findUserByUsername(username)
                     .then(function (response) {
                         var prevUser = response.data;
                         if(prevUser){
                             vm.error = "Username already Exists";
+
+
                         } else {
                             var user = {
-                                _id: userid,
+
                                 username: username,
-                                password: password,
-                                firstName: "",
-                                lastName: ""
+                                password: password
+
                             };
+
                             UserService.createUser(user)
 
-                                .then(function () {
-                                    console.log("inside create user");
-                                    $location.url("/user/"+userid);
+                                .then(function (response) {
+
+                                    var usr = response.data;
+
+                                    $location.url("/user/"+usr._id);
                                 });
                         }
                     });
@@ -86,37 +97,45 @@
 
 
         function init() {
-            UserService.findUserById(vm.userId)
+            UserService
+                .findUserById(vm.userId )
                 .then(function (response) {
                     vm.user = response.data;
                 });
         }
         init();
-        function updateUser(user){
-            UserService.updateUser(vm.userId, user)
-                .then(
-                    function(response) {
-                        vm.success = "Updated the user details successfully";
-                    },
-                    function(error) {
-                        vm.error = "Unable to update user details"
-                    }
-                );
+        vm.deleteUser = deleteUser;
 
-        }
-        function deleteUser(){
+        function deleteUser() {
             UserService
-                .deleteUser(vm.userId)
+                .deleteUser(vm.userId )
                 .then(
-                    function(){
+                    function(response){
                         $location.url("/login");
                     },
-                    function() {
+                    function(error) {
                         vm.error = "Unable to remove user"
                     }
                 );
+        }
 
-
+        function updateUser(updatedUser) {
+            vm.error = null;
+            vm.success = null;
+            if(updatedUser.username === "" || updatedUser.username == null){
+                vm.error = "All details must be entered";
+            } else {
+                UserService
+                    .updateUser(vm.userId , vm.user)
+                    .then(
+                        function (response) {
+                            vm.success = "Updated successfully";
+                        },
+                        function (error) {
+                            vm.error = "Unable to update user"
+                        }
+                    );
+            }
         }
 
 

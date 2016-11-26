@@ -17,11 +17,11 @@
             findWidgetById:findWidgetById,
             updateWidget:updateWidget,
             deleteWidget:deleteWidget,
-            sort:sort
+            reorderWidgets:reorderWidgets
         };
         return api;
 
-        function sort(pageId,initial,final){
+        function reorderWidgets(initial,final,pageId){
             var url="/api/page/"+pageId+"/widget?initial=index1&final=index2";
             url=url
                 .replace("index1",initial)
@@ -32,7 +32,7 @@
         }
 
         function createWidget(pageId, widget) {
-            console.log("create url");
+
             var url= "/api/page/"+pageId+"/widget";
             return $http.post(url, widget);
         }
