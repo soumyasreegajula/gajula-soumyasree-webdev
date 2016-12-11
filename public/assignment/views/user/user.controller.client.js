@@ -13,19 +13,27 @@
         var vm = this;
         vm.login = login;
 
-        function login(username, password) {
-            UserService.findUserByCredentials(username,password)
-                .then(function (response) {
-                    var user = response.data;
-
-                    if(user){
-
-                        $location.url("/user/"+user._id);
-                    } else {
-                        vm.error = "User not found";
-                    }
-                });
-
+        function login (username,password) {
+            if(username === "" || username == null){
+                vm.error = "Username cannot be blank !"
+            } else if (password === "" || password == null){
+                vm.error = "Password cannot be blank !"
+            } else {
+                UserService
+                    .login(username,password)
+                    .then(function (response) {
+                            var user = response.data;
+                            if(user){
+                                //$rootScope.currentUser = user;
+                                $location.url("/user/"+user._id);
+                            } else {
+                                vm.error = "User not found";
+                            }
+                        },
+                        function (error) {
+                            vm.error = "User not found !!"
+                        });
+            }
         }
 
         vm.register = function() {
@@ -52,35 +60,23 @@
                 vm.error = "Password must match";
 
             } else {
-                UserService.findUserByUsername(username)
-                    .then(function (response) {
-                        var prevUser = response.data;
-                        if(prevUser){
-                            vm.error = "Username already Exists";
-
-
-                        } else {
-                            var user = {
-
-                                username: username,
-                                password: password
-
-                            };
-
-                            UserService.createUser(user)
-
-                                .then(function (response) {
-
-                                    var usr = response.data;
-
-                                    $location.url("/user/"+usr._id);
-                                });
+                UserService
+                    .register(username,password)
+                    .then(
+                        function (response) {
+                            var user = response.data;
+                            if(user) {
+                                $location.url("/user/"+user._id);
+                            }
+                        },
+                        function (err) {
+                            vm.error = err.data;
                         }
-                    });
+                    );
             }
         }
-    }
 
+    }
 
 
 
@@ -92,6 +88,21 @@
         var vm = this;
         vm.updateUser=updateUser;
         vm.deleteUser=deleteUser;
+        vm.logout = logout;
+
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/login");
+                    },
+                    function() {
+                        $location.url("/login");
+                    }
+                );
+
+        }
 
         vm.userId = $routeParams['uid'];
 
@@ -138,6 +149,20 @@
             }
         }
 
+        vm.logout = logout;
 
+        function logout() {
+            UserService
+                .logout()
+                .then(
+                    function(response) {
+                        $location.url("/login");
+                    },
+                    function() {
+                        $location.url("/login");
+                    }
+                );
+
+        }
     }
 })();

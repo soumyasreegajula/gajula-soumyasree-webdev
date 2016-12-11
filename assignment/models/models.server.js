@@ -14,7 +14,7 @@ module.exports = function () {
     }
     //mongoose.Promise == global.Promise;
     var mongoose = require("mongoose");
-    mongoose.Promise = require('bluebird');
+    //mongoose.Promise = require('bluebird');
 
     mongoose.connect(db);
     //mongoose.connect(connectionString);

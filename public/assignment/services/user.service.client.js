@@ -12,9 +12,39 @@
             createUser: createUser,
             findUserByUsername: findUserByUsername,
             updateUser: updateUser,
-            deleteUser: deleteUser
+            deleteUser: deleteUser,
+            login: login,
+            logout: logout,
+            register: register,
+            loggedIn: loggedIn
         };
         return api;
+
+
+        function register(username,password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/register", user);
+        }
+
+        function loggedIn() {
+            return $http.get('/api/loggedIn');
+        }
+
+
+        function logout(user) {
+            return $http.post("/api/logout");
+        }
+
+        function login(username,password) {
+            var user = {
+                username: username,
+                password: password
+            };
+            return $http.post("/api/login", user);
+        }
 
         function deleteUser(userId) {
             var url = "/api/user/"+ userId;

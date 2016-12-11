@@ -58,6 +58,7 @@
 
 
         function createWidget(widgetType) {
+
             WidgetService
                 .findWidgetsByPageId(vm.pageId)
                 .then(
@@ -105,6 +106,7 @@
                                 };
                                 break;
                         }
+
                         WidgetService
                             .createWidget(vm.pageId,widget)
                             .then(function (response) {
@@ -139,9 +141,13 @@
         vm.updateWidget = updateWidget;
 
         function updateWidget() {
+            console.log("inside widget");
             vm.error = null;
-            if(vm.widget.name == null || vm.widget.name == ""){
-                vm.error = "Name cannot be blank !!";
+            console.log(vm.widget.name);
+            console.log(vm.widget);
+
+            if(vm.widget.name == null || vm.widget.name == "" ||vm.widget.name=="undefined"){
+                vm.error = "Widget Name cannot be blank !!";
             } else {
                 WidgetService
                     .updateWidget(vm.widgetId,vm.widget)

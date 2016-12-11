@@ -100,12 +100,19 @@
         init();
 
         function updateWebsite(website) {
-            WebsiteService
-                .updateWebsite(vm.websiteId,website)
-                .then(function () {
-                    $location.url("/user/"+ vm.userId + "/website");
-                });
+            vm.error = null;
+            if (website.name == null || website.name === "") {
+                vm.error = "Website Name cannot be blank !!";
+            } else {
+                WebsiteService
+                    .updateWebsite(vm.websiteId, website)
+                    .then(function () {
+                        $location.url("/user/" + vm.userId + "/website");
+                    });
+            }
         }
+
+
 
         function deleteWebsite(websiteId) {
             WebsiteService
